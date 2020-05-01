@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8199159c-dafe-42fc-ada5-ca5dbeb0594d" name="Default Changelist" comment="template uygulanmasi ve adminde resim upload, resim galerisi ve yuklenen resimlerin">
-      <change afterPath="$PROJECT_DIR$/home/templates/content.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/footer.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/homebase.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/leftsidebar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/rightsidebar.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/home/templates/slider.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news/migrations/0005_auto_20200501_1452.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/economyCategory.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news1.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news1_0U1VeFL.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news1_3oeUvDF.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news1_6GW6wjG.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/sportCategory.jpg" afterDir="false" />
+    <list default="true" id="8199159c-dafe-42fc-ada5-ca5dbeb0594d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/home/migrations/0001_initial.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/news/migrations/0006_auto_20200501_1643.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsSite/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/NewsSite/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsSite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/NewsSite/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/homebase.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/homebase.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/uploads/images/crying.jpg" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,27 +77,35 @@
       <option name="project" value="LOCAL" />
       <updated>1586044670604</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="home template uygulamasi ve adminde resim upload, resim galerisi ve yuklenen resimlerin gosterilmesi">
+      <created>1588336458657</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1588336458657</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="home template uygulamasi ve adminde resim upload, resim galerisi ve yuklenen resimlerin gosterilmesi" />
+    <option name="LAST_COMMIT_MESSAGE" value="home template uygulamasi ve adminde resim upload, resim galerisi ve yuklenen resimlerin gosterilmesi" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588118095458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588118095458" />
-    <state x="424" y="7" key="CommitChangelistDialog2" timestamp="1588336169842">
+    <state x="424" y="7" key="CommitChangelistDialog2" timestamp="1588336457679">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588336169842" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1586044710955">
+    <state x="424" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1588336457679" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1588336507903">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1586044710955" />
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1588336507903" />
     <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1588280257243">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

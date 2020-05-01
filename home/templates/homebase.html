@@ -8,7 +8,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Mag - Video &amp; Magazine HTML Template</title>
+    <title>{% block title %} {% endblock %}</title>
 
     {% load static %}
     <!-- Favicon -->
@@ -16,7 +16,7 @@
 
     <!-- Stylesheet -->
     <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
-
+    {% block head %} {% endblock %}
 </head>
 <body>
     {% include "header.html" %}
