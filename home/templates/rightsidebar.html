@@ -2,7 +2,7 @@
 <!-- >>>>>>>>>>>>>>>>>>>>
          Post Right Sidebar Area
         <<<<<<<<<<<<<<<<<<<<< -->
-        <div class="post-sidebar-area right-sidebar mt-30 mb-30 box-shadow">
+        <div class="post-sidebar-area right-sidebar {% if not page %} mt-30 {% endif %} mb-30 box-shadow">
             <!-- Sidebar Widget -->
             <div class="single-sidebar-widget p-30">
                 <!-- Social Followers Info -->
@@ -41,7 +41,7 @@
             <div class="single-sidebar-widget">
                 <a href="#" class="add-img"><img src="img/bg-img/add2.png" alt=""></a>
             </div>
-
+            {% if not page %}
             <!-- Sidebar Widget -->
             <div class="single-sidebar-widget p-30">
                 <!-- Section Title -->
@@ -105,6 +105,7 @@
                 </div>
 
             </div>
+            {% endif %}
 
             <!-- Sidebar Widget -->
             <div class="single-sidebar-widget p-30">
