@@ -35,6 +35,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'mptt',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',

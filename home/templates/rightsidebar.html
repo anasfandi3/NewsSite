@@ -26,7 +26,14 @@
                 </div>
 
                 <!-- Catagory Widget -->
+                {% load mptt_tags %}
                 <ul class="catagory-widgets">
+                    {% recursetree categories %}
+                        <li>
+                            <a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{ node.title }}</span></a>
+
+                        </li>
+                    {% endrecursetree %}
                     <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Life Style</span> <span>35</span></a></li>
                     <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Travel</span> <span>30</span></a></li>
                     <li><a href="#"><span><i class="fa fa-angle-double-right" aria-hidden="true"></i> Foods</span> <span>13</span></a></li>

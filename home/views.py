@@ -5,17 +5,27 @@ from django.shortcuts import render
 # Create your views here.
 
 from home.models import Setting, ContactFormMessage, ContactForm
+from news.models import News, Category
 
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting' : setting}
+    sliderdata = News.objects.all()[:3]
+    categories = Category.objects.all()
+    context = {'setting': setting,
+               'sliderdata': sliderdata,
+               'categories': categories,
+               }
     return render(request, 'index.html', context)
 
 
 def about(request):
     setting = Setting.objects.get(pk=1)
-    context = {'setting': setting, 'page':'about'}
+    categories = Category.objects.all()
+    context = {'setting': setting,
+               'page': 'about',
+               'categories': categories,
+               }
     return render(request, 'about.html', context)
 
 def contact(request):
