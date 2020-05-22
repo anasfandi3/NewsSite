@@ -43,6 +43,21 @@ def contact(request):
 
     setting = Setting.objects.get(pk=1)
     #form = ContactForm()
-    context = {'setting': setting, 'page': 'contact'}
+    categories = Category.objects.all()
+    context = {'setting': setting,
+               'page': 'contact',
+               'categories': categories,
+               }
     return render(request, 'contact.html', context)
 
+
+def category_news(request, id, slug):
+    news = News.objects.filter(category_id=id)
+    categories = Category.objects.all()
+    category = Category.objects.get(id=id)
+    context = {'news': news,
+               'categories': categories,
+               'category': category,
+               'page': 'category news',
+               }
+    return render(request, 'news.html', context)

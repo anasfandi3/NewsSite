@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+        <title>{% block title %} {{ category.title }} {% endblock %}</title>
+
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    {% block head %} {% endblock %}
+</head>
+<body>
+    {% include "header.html" %}
+
+
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="mag-breadcrumb py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{category.title}}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Us Area Start ##### -->
+    <section class="contact-area">
+        <div class="container col-12">
+            <div class="row justify-content-center">
+                <div class="col-12 col-xl-8">
+                    <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
+
+                        <div class="row">
+
+                            {% for rs in news %}
+                                <!-- Single Blog Post -->
+                                <div class="col-12 col-lg-6">
+                                    <div class="single-blog-post d-flex style-3 mb-30">
+                                        <div class="post-thumbnail">
+                                            <img src="{{ rs.image.url }}" alt="">
+                                        </div>
+                                        <div class="post-content">
+                                            <a href="/post/{{ rs.id }}/{{ rs.slug }}/" class="post-title">{{ rs.title }}</a>
+                                            <div class="post-meta d-flex">
+                                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
+                                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
+                                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            {% endfor %}
+
+                        </div>
+
+                    </div>
+                </div>
+                {% include "rightsidebar.html" %}
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Us Area End ##### -->
+
+
+    {% include "footer.html" %}
+</body>
+</html>
