@@ -2,22 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8199159c-dafe-42fc-ada5-ca5dbeb0594d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/home/templates/news.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/news/migrations/0009_remove_news_parent.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/basketballCategory.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news_jordan.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news_olivier.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news_premiership.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/images/news_robinban_112407141_robin_uthappa_getty.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/cultureCategory.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/musicCategory.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_alibaba.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_ante_zizic.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_asiangains.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_astrelia.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_china.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_debt.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_dorsey.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_jobsinc.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_laliga.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_outbreak.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_planedelay.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/news_uk_league.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/stockCategory.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/tvCategory.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/uploads/images/tvshowsCategory.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NewsSite/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/NewsSite/urls.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db.sqlite3" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/about.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/about.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/contact.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/contact.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home/templates/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/content.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/content.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/leftsidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/leftsidebar.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/home/templates/news.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/news.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/templates/rightsidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/home/templates/rightsidebar.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/home/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/home/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/news/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/news/models.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +136,14 @@
       <option name="project" value="LOCAL" />
       <updated>1589954004447</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Kategori ürünlerini gösterme">
+      <created>1590118141429</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1590118141429</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -138,29 +155,30 @@
     <MESSAGE value="about us ve contact sayfalarini eklemesi" />
     <MESSAGE value="contact form message ayarlandi" />
     <MESSAGE value="Kategori alt kategori menu yapildi" />
-    <option name="LAST_COMMIT_MESSAGE" value="Kategori alt kategori menu yapildi" />
+    <MESSAGE value="Kategori ürünlerini gösterme" />
+    <option name="LAST_COMMIT_MESSAGE" value="Kategori ürünlerini gösterme" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1588118095458">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="223" y="67" width="1089" height="705" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.824@0.0.1536.824" timestamp="1588118095458" />
-    <state x="424" y="7" key="CommitChangelistDialog2" timestamp="1589954003548">
+    <state x="424" y="7" key="CommitChangelistDialog2" timestamp="1590118140569">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="424" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1589954003548" />
+    <state x="424" y="7" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1590118140569" />
     <state x="277" y="55" key="SettingsEditor" timestamp="1589902973920">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="277" y="55" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1589902973920" />
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1589954023462">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2" timestamp="1590118150294">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1589954023462" />
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1590116971779">
+    <state x="361" y="145" key="Vcs.Push.Dialog.v2/0.0.1536.824@0.0.1536.824" timestamp="1590118150294" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog" timestamp="1590378998325">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1590116971779" />
+    <state x="465" y="236" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1590378998325" />
     <state x="578" y="329" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1586044591604">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

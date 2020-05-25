@@ -30,7 +30,7 @@
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item"><a href="#"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{category.title}}</li>
                         </ol>
                     </nav>
@@ -47,8 +47,11 @@
                 <div class="col-12 col-xl-8">
                     <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
 
-                        <div class="row">
+                        <div class="section-heading">
+                                <h5>Latest</h5>
+                        </div>
 
+                        <div class="row">
                             {% for rs in news %}
                                 <!-- Single Blog Post -->
                                 <div class="col-12 col-lg-6">
