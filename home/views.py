@@ -5,7 +5,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from home.models import Setting, ContactFormMessage, ContactForm
-from news.models import News, Category
+from news.models import News, Category, Images
 
 
 def index(request):
@@ -14,7 +14,7 @@ def index(request):
     hot_news = News.objects.all()[:4]
     latest_news = News.objects.all().order_by('-id')[:4]
     random_news = News.objects.all().order_by('?')[:4]
-    today_news = News.objects.all().order_by('-id')[:4]
+    today_news = News.objects.all().order_by('-id') [:4]
     categories = Category.objects.all()
     context = {'setting': setting,
                'sliderdata': sliderdata,
@@ -66,6 +66,20 @@ def category_news(request, id, slug):
     context = {'news': news,
                'categories': categories,
                'category': category,
-               'page': 'category news',
+               'page': 'category_news'
                }
     return render(request, 'news.html', context)
+
+
+def post_detail(request, id, slug):
+    categories = Category.objects.all()
+    post = News.objects.get(id=id)
+    images = Images.objects.filter(news_id=id)
+    context = {
+                'post': post,
+                'categories': categories,
+                'images': images,
+                'page': 'single_post'
+               }
+
+    return render(request, 'post.html', context)

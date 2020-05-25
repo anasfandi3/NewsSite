@@ -17,8 +17,8 @@
                     <div class="single-trending-post">
                         <img style="height:150px" src="{{ rs.image.url }}" alt="">
                         <div class="post-content">
-                            <a href="#" class="post-cata">{{ rs.category.title }}</a>
-                            <div style="height:50px; overflow:hidden; width:100%" ><a href="video-post.html" class="post-title">{{ rs.title }}</a></div>
+                            <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}" class="post-cata">{{ rs.category.title }}</a>
+                            <div style="height:50px; overflow:hidden; width:100%" ><a href="/post/{{ rs.id }}/{{ rs.slug }}" class="post-title">{{ rs.title }}</a></div>
                         </div>
                     </div>
                     {% endfor %}
@@ -40,8 +40,8 @@
                     <div class="single-trending-post">
                         <img style="height:150px" src="{{ rs.image.url }}" alt="">
                         <div class="post-content">
-                            <a href="#" class="post-cata">{{ rs.category.title }}</a>
-                            <div style="height:50px; overflow:hidden; width:100%" ><a href="video-post.html" class="post-title">{{ rs.title }}</a></div>
+                            <a href="/category/{{ rs.category.id }}/{{ rs.category.slug }}" class="post-cata">{{ rs.category.title }}</a>
+                            <div style="height:50px; overflow:hidden; width:100%" ><a href="/post/{{ rs.id }}/{{ rs.slug }}" class="post-title">{{ rs.title }}</a></div>
                         </div>
                     </div>
                     {% endfor %}
@@ -66,7 +66,7 @@
                                 <img src="{{ rs.image.url }}" alt="">
                             </div>
                             <div class="post-content">
-                                <a href="single-post.html" class="post-title">{{ rs.title }}</a>
+                                <a href="/post/{{ rs.id }}/{{ rs.slug }}" class="post-title">{{ rs.title }}</a>
                                 <div class="post-meta d-flex">
                                     <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                     <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
