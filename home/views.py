@@ -1,9 +1,11 @@
+import json
+
 from django.contrib import messages
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 
 # Create your views here.
-
+from home.forms import SearchForm
 from home.models import Setting, ContactFormMessage, ContactForm
 from news.models import News, Category, Images, Comment, Like
 
@@ -87,3 +89,35 @@ def post_detail(request, id, slug):
                }
 
     return render(request, 'post.html', context)
+
+
+def news_search(request):
+    if request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            categories = Category.objects.all()
+            query = form.cleaned_data['query']
+            news = News.objects.filter(title__icontains=query)
+            # return HttpResponse(products)
+            context = {'news': news,
+                       'categories': categories,
+                       }
+            return render(request, 'news_search.html', context)
+
+    return HttpResponseRedirect('/')
+
+
+def news_search_auto(request):
+    if request.is_ajax():
+        q = request.GET.get('term', '')
+        news = News.objects.filter(title__icontains=q)
+        results = []
+        for rs in news:
+            news_json = {}
+            news_json = rs.title
+            results.append(news_json)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    return HttpResponse(data, mimetype)

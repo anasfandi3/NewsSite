@@ -31,6 +31,7 @@ def addcomment(request, post_id):
     return HttpResponseRedirect(url)
 
 
+@login_required(login_url='/login')
 def like(request, post_id):
     url = request.META.get('HTTP_REFERER')
 

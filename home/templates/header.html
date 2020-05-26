@@ -1,4 +1,10 @@
 {% load static %}
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+<!-- jquery UI 1-->
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
 <!-- Preloader -->
     <div class="preloader d-flex align-items-center justify-content-center">
         <div class="spinner">
@@ -57,11 +63,27 @@
                             <!-- Nav End -->
                         </div>
 
+                        <script>
+                            $(function() {
+                                $("#query").autocomplete({
+                                    source: "/search_auto/",
+                                    select: function (event, ui) {
+                                        AutoCompleteSelectHandler(event, ui)
+                                    },
+                                    minLength: 2,
+                                });
+                            });
+                            function AutoCompleteSelectHandler(event, ui){
+                                var selectedObj = ui.item;
+                            }
+                        </script>
+
                         <div class="top-meta-data d-flex align-items-center">
                             <!-- Top Search Area -->
                             <div class="top-search-area">
-                                <form action="index.html" method="post">
-                                    <input type="search" name="top-search" id="topSearch" placeholder="Search and hit enter...">
+                                <form action="/search/" method="post">
+                                    {% csrf_token %}
+                                    <input type="search" name="query" id="query" placeholder="Search and hit enter...">
                                     <button type="submit" class="btn"><i class="fa fa-search" aria-hidden="true"></i></button>
                                 </form>
                             </div>

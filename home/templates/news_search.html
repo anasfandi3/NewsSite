@@ -1,0 +1,31 @@
+{% extends 'homebase.html' %}
+
+{% block title %} {% endblock %}
+{% block keywords %} {% endblock %}
+{% block description %} {% endblock %}
+
+{% block head %}
+    <link rel='shortcut icon' type='image/x-icon' href='{{setting.icon.url}}' 1>
+{% endblock %}
+
+{% block content %}
+<div class="mt-30 mb-30 p-30 box-shadow">
+    <div>
+        <table cellpadding="3" width="1200" style="margin-left:auto;margin-right:auto">
+            <tr>
+                <th>Image</th>
+                <th>Post</th>
+                <th>Category</th>
+            </tr>
+            {% for rs in news%}
+            <tr class="single-blog-post">
+                <td><a href="/post/{{ rs.id }}/{{ rs.slug }}"><img src="{{ rs.image.url }}" style="height:70px;margin-top:20px"></a></td>
+                <td><div class="post-content"><a class="post-title" href="/post/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></div></td>
+                <td><div class="post-content"><a class ="post-title" href="/category/{{ rs.category.id }}/{{ rs.category.slug }}">{{ rs.category.title }}</a></div></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}
