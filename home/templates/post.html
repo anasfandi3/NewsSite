@@ -81,7 +81,7 @@
                             <!-- Post Meta -->
                             <div class="post-meta-2">
                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                <a href="#"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 834</a>
+                                <a href="/news/like/{{ post.id }}"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ likes_count }}</a>
                                 <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                             </div>
 
@@ -113,6 +113,7 @@
                         </div>
 
                         <ol>
+                            {% for comment in comments %}
                             <!-- Single Comment Area -->
                             <li class="single_comment_area">
                                 <!-- Comment Content -->
@@ -123,38 +124,17 @@
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
-                                        <a href="#" class="comment-date">27 Aug 2019</a>
-                                        <h6>Tomas Mandy</h6>
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
+                                        <a href="#" class="comment-date">{{ post.create_at|date:"M d, Y" }}</a>
+                                        <h6>{{ comment.user }}</h6>
+                                        <p>{{ comment.comment }}</p>
                                         <div class="d-flex align-items-center">
                                             <a href="#" class="like">like</a>
                                             <a href="#" class="reply">Reply</a>
                                         </div>
                                     </div>
                                 </div>
-
-                                <ol class="children">
-                                    <li class="single_comment_area">
-                                        <!-- Comment Content -->
-                                        <div class="comment-content d-flex">
-                                            <!-- Comment Author -->
-                                            <div class="comment-author">
-                                                <img src="img/bg-img/54.jpg" alt="author">
-                                            </div>
-                                            <!-- Comment Meta -->
-                                            <div class="comment-meta">
-                                                <a href="#" class="comment-date">27 Aug 2019</a>
-                                                <h6>Britney Millner</h6>
-                                                <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
-                                                <div class="d-flex align-items-center">
-                                                    <a href="#" class="like">like</a>
-                                                    <a href="#" class="reply">Reply</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ol>
                             </li>
+                            {% endfor %}
 
                             <!-- Single Comment Area -->
                             <li class="single_comment_area">
@@ -177,6 +157,27 @@
                                 </div>
                             </li>
                         </ol>
+                        <ol class="children">
+                            <li class="single_comment_area">
+                                <!-- Comment Content -->
+                                <div class="comment-content d-flex">
+                                    <!-- Comment Author -->
+                                    <div class="comment-author">
+                                        <img src="img/bg-img/54.jpg" alt="author">
+                                    </div>
+                                    <!-- Comment Meta -->
+                                    <div class="comment-meta">
+                                        <a href="#" class="comment-date">27 Aug 2019</a>
+                                        <h6>Britney Millner</h6>
+                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
+                                        <div class="d-flex align-items-center">
+                                            <a href="#" class="like">like</a>
+                                            <a href="#" class="reply">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ol>
                     </div>
 
                     <!-- Post A Comment Area -->
@@ -188,19 +189,25 @@
 
                         <!-- Reply Form -->
                         <div class="contact-form-area">
-                            <form action="#" method="post">
+                            {% if messages %}
+                                {% for message in messages %}
+                                    <div class="alert alert-{{message.tags}}" role="alert">
+                                        {{message}}
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                            <form action="/news/addcomment/{{ post.id }}" method="post">
+                                {% csrf_token %}
                                 <div class="row">
-                                    <div class="col-12 col-lg-6">
-                                        <input type="text" class="form-control" id="name" placeholder="Your Name*" required>
-                                    </div>
-                                    <div class="col-12 col-lg-6">
-                                        <input type="email" class="form-control" id="email" placeholder="Your Email*" required>
+                                    <div class="col-12">
+                                        <textarea name="comment" class="form-control" id="comment" cols="30" rows="10" placeholder="Comment*" ></textarea>
                                     </div>
                                     <div class="col-12">
-                                        <textarea name="message" class="form-control" id="message" cols="30" rows="10" placeholder="Message*" required></textarea>
-                                    </div>
-                                    <div class="col-12">
+                                        {% if user.id is not None %}
                                         <button class="btn mag-btn mt-30" type="submit">Submit Comment</button>
+                                        {% else %}
+                                        you need to login to comment
+                                        {% endif %}
                                     </div>
                                 </div>
                             </form>

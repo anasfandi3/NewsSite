@@ -5,7 +5,7 @@ from django.shortcuts import render
 # Create your views here.
 
 from home.models import Setting, ContactFormMessage, ContactForm
-from news.models import News, Category, Images
+from news.models import News, Category, Images, Comment, Like
 
 
 def index(request):
@@ -74,11 +74,15 @@ def category_news(request, id, slug):
 def post_detail(request, id, slug):
     categories = Category.objects.all()
     post = News.objects.get(id=id)
+    comments = Comment.objects.filter(post_id=id)
+    likes_count = Like.objects.filter(post_id=id).count()
     images = Images.objects.filter(news_id=id)
     context = {
                 'post': post,
                 'categories': categories,
+                'comments': comments,
                 'images': images,
+                'likes_count': likes_count,
                 'page': 'single_post'
                }
 
