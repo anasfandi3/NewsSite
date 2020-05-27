@@ -1,7 +1,12 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse, HttpResponseRedirect, JsonResponse
+
+try:
+    from django.utils import simplejson as json
+except ImportError:
+    import json
 from django.shortcuts import render
 
 # Create your views here.
@@ -32,21 +37,26 @@ def addcomment(request, post_id):
 
 
 @login_required(login_url='/login')
-def like(request, post_id):
-    url = request.META.get('HTTP_REFERER')
-
-    likes = Like.objects.filter(post_id=post_id)
-    users = []
-    for like in likes:
-        users.append(like.user)
-    if request.user in users:
-        likes.get(user_id=request.user.id).delete()
+def like(request):
+    if request.method == 'POST':
+        likes = Like.objects.filter(post_id=request.POST.get('post_id', ''))
+        users = []
+        for like in likes:
+            users.append(like.user)
+        if request.user in users:
+            likes.get(user_id=request.user.id).delete()
+            data = "unliked"
+        else:
+            new_like = Like()
+            new_like.user = request.user
+            new_like.post = News.objects.get(id=request.POST.get('post_id', ''))
+            new_like.save()
+            data = "liked"
     else:
-        new_like = Like()
-        new_like.user = request.user
-        new_like.post = News.objects.get(id=post_id)
-        new_like.save()
-        messages.success(request, "Liked")
-        return HttpResponseRedirect(url)
-    messages.warning(request, "error")
-    return HttpResponseRedirect(url)
+        data = "fail"
+    likes_count = Like.objects.filter(post_id=request.POST.get('post_id', '')).count()
+    ctx = {'data': data, 'likes_count': likes_count}
+    mimetype = 'application/json'
+    return JsonResponse(ctx)
+
+

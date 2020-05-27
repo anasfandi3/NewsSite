@@ -16,12 +16,22 @@
 
     <!-- Stylesheet -->
     <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"> </script>
+    <!-- jquery UI 1-->
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+
     {% block head %} {% endblock %}
+
+    <style>
+        .post-details-content .post-meta-2 .likedColor {
+            color: #ed3974;
+        }
+    </style>
 </head>
 <body>
+
     {% include "header.html" %}
-
-
 
     <!-- ##### Breadcrumb Area Start ##### -->
     <div class="mag-breadcrumb py-5">
@@ -40,6 +50,7 @@
         </div>
     </div>
     <!-- ##### Breadcrumb Area End ##### -->
+
 
     <!-- ##### Post Details Area Start ##### -->
     <section class="post-details-area">
@@ -72,6 +83,9 @@
                         <!--<div class="blog-thumb mb-30">
                             <img src="{{ post.image.url }}" alt="">
                         </div>-->
+
+
+
                         <div class="blog-content">
                             <div class="post-meta">
                                 <a href="#">{{ post.create_at|date:"M d, Y" }}</a>
@@ -81,7 +95,7 @@
                             <!-- Post Meta -->
                             <div class="post-meta-2">
                                 <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
-                                <a href="/news/like/{{ post.id }}"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ likes_count }}</a>
+                                <a id="like" class="{% if liked %} likedColor {% endif %}" href="#"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ likes_count }}</a>
                                 <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                             </div>
 
@@ -96,7 +110,7 @@
                             <!-- Post Author -->
                             <div class="post-author d-flex align-items-center">
                                 <div class="post-author-thumb">
-                                    <img src="img/bg-img/52.jpg" alt="">
+                                    <img src="  " alt="">
                                 </div>
                                 <div class="post-author-desc pl-4">
                                     <a href="#" class="author-name">Alan Shaerer</a>
@@ -120,7 +134,7 @@
                                 <div class="comment-content d-flex">
                                     <!-- Comment Author -->
                                     <div class="comment-author">
-                                        <img src="img/bg-img/53.jpg" alt="author">
+                                        <img src="" alt="author">
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
@@ -142,7 +156,7 @@
                                 <div class="comment-content d-flex">
                                     <!-- Comment Author -->
                                     <div class="comment-author">
-                                        <img src="img/bg-img/55.jpg" alt="author">
+                                        <img src="" alt="author">
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
@@ -163,7 +177,7 @@
                                 <div class="comment-content d-flex">
                                     <!-- Comment Author -->
                                     <div class="comment-author">
-                                        <img src="img/bg-img/54.jpg" alt="author">
+                                        <img src="" alt="author">
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
@@ -222,7 +236,30 @@
 
     <!-- ##### About Us Area End ##### -->
 
+    <script>
+        $('#like').click(function(){
+            $.ajax({
+                type: "post",
+                dataType: "json",
+                url: "{% url 'like_url' %}",
+                data:{
+                     post_id: {{post.id}},
+                     'csrfmiddlewaretoken': '{{ csrf_token }}',
+                },
+                success: function(rs){
+                    console.log(rs)
+                    $('#like').contents()[2].textContent = rs.likes_count
 
+                    if(rs.data == 'liked'){
+                        $('#like').addClass('likedColor')
+                    }else{
+                        $('#like').removeClass('likedColor')
+                    }
+                }
+            });
+
+        });
+    </script>
     {% include "footer.html" %}
 </body>
 </html>

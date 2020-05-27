@@ -77,12 +77,21 @@ def post_detail(request, id, slug):
     categories = Category.objects.all()
     post = News.objects.get(id=id)
     comments = Comment.objects.filter(post_id=id)
-    likes_count = Like.objects.filter(post_id=id).count()
+    likes = Like.objects.filter(post_id=id)
+    likes_count = likes.count()
+    users = []
+    for like in likes:
+        users.append(like.user)
+    if request.user in users:
+        liked = "yes"
+    else:
+        liked = ""
     images = Images.objects.filter(news_id=id)
     context = {
                 'post': post,
                 'categories': categories,
                 'comments': comments,
+                'liked': liked,
                 'images': images,
                 'likes_count': likes_count,
                 'page': 'single_post'
