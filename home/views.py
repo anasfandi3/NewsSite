@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormMessage, ContactForm
+from home.models import Setting, ContactFormMessage, ContactForm, UserProfile
 from news.models import News, Category, Images, Comment, Like
 
 
@@ -19,6 +19,8 @@ def index(request):
     random_news = News.objects.all().order_by('?')[:4]
     today_news = News.objects.all().order_by('-id') [:4]
     categories = Category.objects.all()
+    #user_profile = UserProfile.objects.get(user=request.user)
+
     context = {'setting': setting,
                'sliderdata': sliderdata,
                'latest_news': latest_news,
@@ -26,6 +28,7 @@ def index(request):
                'random_news': random_news,
                'categories': categories,
                'today_news': today_news,
+               #'user_profile': user_profile,
                }
     return render(request, 'index.html', context)
 
