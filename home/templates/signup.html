@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block title %} {{ page }} {% endblock %}</title>
+
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    {% block head %} {% endblock %}
+</head>
+<body>
+    {% include "header.html" %}
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({% static 'img/bg-img/40.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2>Sign Up</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Login Area Start ##### -->
+    <div class="mag-login-area py-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-6">
+                    <div class="login-content bg-white p-30 box-shadow">
+
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{{message.tags}}" role="alert">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <!-- Section Title -->
+                        <div class="section-heading">
+                            <h5>Great to have you back!</h5>
+                        </div>
+
+
+                        <form action="#" method="post">
+                            {% csrf_token %}
+                            <div class="form-group">
+                                <input type="text" name="username" class="form-control" id="id_username" placeholder="User Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" class="form-control" id="id_email" placeholder="email@address.com">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="first_name" class="form-control" id="id_first_name" placeholder="First Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" name="last_name" class="form-control" id="id_last_name" placeholder="Last Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password1" class="form-control" id="id_password1" placeholder="password">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password2" class="form-control" id="id_password2" placeholder="Confirm Password">
+                            </div>
+
+                            <button type="submit" class="btn mag-btn mt-30">Sign up</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Login Area End ##### -->
+
+
+    {% include "footer.html" %}
+</body>
+</html>
