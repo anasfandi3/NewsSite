@@ -19,7 +19,6 @@ def index(request):
     random_news = News.objects.all().order_by('?')[:4]
     today_news = News.objects.all().order_by('-id') [:4]
     categories = Category.objects.all()
-    #user_profile = UserProfile.objects.get(user=request.user)
 
     context = {'setting': setting,
                'sliderdata': sliderdata,
@@ -28,7 +27,6 @@ def index(request):
                'random_news': random_news,
                'categories': categories,
                'today_news': today_news,
-               #'user_profile': user_profile,
                }
     return render(request, 'index.html', context)
 
@@ -114,6 +112,7 @@ def news_search(request):
             # return HttpResponse(products)
             context = {'news': news,
                        'categories': categories,
+                       'page': 'search',
                        }
             return render(request, 'news_search.html', context)
 

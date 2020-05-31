@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block title %} {{ page }} {% endblock %}</title>
+
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    {% block head %} {% endblock %}
+</head>
+<body>
+    {% include "header.html" %}
+
+      <!-- ##### Breadcrumb Area Start ##### -->
+    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({% static 'img/bg-img/40.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2>{{ page }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="mag-breadcrumb py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ page }}</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Us Area Start ##### -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="row justify-content-left">
+                {% include "user_panel.html" %}
+                <div class="col-12 col-xl-8">
+                    <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
+                        <div class="col-12" style="text-align:center;">
+                            <img src="{{ profile.image.url }}" style="height:200px; border-radius: 50%; border: solid 2px #ed3974; padding:2px;">
+                        </div>
+                        <div style="margin-top:30px">
+                            <table cellpadding="3" width="100%" style="margin-left:auto;margin-right:auto; border-top: 1px solid #ebebeb">
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Username</th>
+                                    <td>{{ user.username }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>First Name</th>
+                                    <td>{{ user.first_name }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Last Name</th>
+                                    <td>{{ user.last_name }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Phone</th>
+                                    <td>{{ profile.phone }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Email</th>
+                                    <td>{{ user.email }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Country</th>
+                                    <td>{{ profile.country }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>City</th>
+                                    <td>{{ profile.city }}</td>
+                                </tr>
+                                <tr class="single-blog-post" style="height:50px">
+                                    <th>Address</th>
+                                    <td>{{ profile.address }}</td>
+                                </tr>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Us Area End ##### -->
+
+
+    {% include "footer.html" %}
+</body>
+</html>

@@ -90,11 +90,8 @@
                             <div class="classynav">
                                 <ul>
                                     <li class="cn-dropdown-item has-down">
-                                        {% if user_profile %}
-                                        <a href="/profile/" class="login-btn" style="text-transform:none;"><img src="{{ user_profile.image.url }}" style="width:30px; height:35px; border-radius: 50%; border: solid 2px #ed3974; padding:1px; overflow:hidden"> {{user.username}}</a>
-                                        {% else %}
-                                        <a href="/profile/" class="login-btn" style="text-transform:none;"><i class="fa fa-user"></i> {{user.username}}</a>
-                                        {% endif %}
+                                        <a href="/user/" class="login-btn" style="text-transform:none;"><img src="{{ user.userprofile.image.url }}" style="width:30px; height:35px; border-radius: 50%; border: solid 2px #ed3974; padding:1px; overflow:hidden"> {{user.username}}</a>
+
                                         <ul class="dropdown">
                                             <li><a href="/logout">logout</a></li>
                                         </ul>

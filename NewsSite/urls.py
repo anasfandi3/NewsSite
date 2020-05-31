@@ -24,11 +24,13 @@ from home import views
 urlpatterns = [
     path('news/', include('news.urls')),
     path('home/', include('home.urls')),
+    path('user/', include('user.urls')),
     path('', include('home.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('admin/', admin.site.urls),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('category/<int:id>/<slug:slug>/', views.category_news, name='category'),
     path('post/<int:id>/<slug:slug>/', views.post_detail, name='post'),
     path('search/', views.news_search, name='news_search'),
