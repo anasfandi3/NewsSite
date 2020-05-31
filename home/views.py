@@ -168,8 +168,16 @@ def signup_view(request):
             password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=password)
             login(request, user)
-            return HttpResponseRedirect('/')
 
+            current_user = request.user
+            data = UserProfile()
+            data.user = current_user
+            data.image = "images/users/default.png"
+            data.save()
+            messages.success(request, "Congratulations! you successfully signed up ")
+            return HttpResponseRedirect('/')
+        else:
+            return HttpResponse("wtf")
     categories = Category.objects.all()
     context = {
         'categories': categories
