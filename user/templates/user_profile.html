@@ -39,6 +39,15 @@
     <div class="mag-breadcrumb py-5">
         <div class="container">
             <div class="row">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} mb-30" role="alert" >
+                            {{ message|safe }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
                 <div class="col-12">
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
@@ -47,6 +56,7 @@
                         </ol>
                     </nav>
                 </div>
+
             </div>
         </div>
     </div>
@@ -59,9 +69,17 @@
                 {% include "user_panel.html" %}
                 <div class="col-12 col-xl-8">
                     <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
-                        <div class="col-12" style="text-align:center;">
-                            <img src="{{ profile.image.url }}" style="height:200px; border-radius: 50%; border: solid 2px #ed3974; padding:2px;">
-                        </div>
+                       <div class="row">
+                            <div class="col-6 ">
+                                <div class="row justify-content-center">
+                                    <a href="/user/update" class="btn mag-btn mt-30 ml-50">update profile</a>
+                                    <a href="/user/password" class="btn mag-btn mt-30 ml-50 ">Change password</a>
+                                </div>
+                            </div>
+                            <div class="col-6" style="text-align:center;">
+                                <img src="{{ profile.image.url }}" style="height:200px; border-radius: 50%; border: solid 2px #ed3974; padding:2px;">
+                            </div>
+                       </div>
                         <div style="margin-top:30px">
                             <table cellpadding="3" width="100%" style="margin-left:auto;margin-right:auto; border-top: 1px solid #ebebeb">
                                 <tr class="single-blog-post" style="height:50px">
