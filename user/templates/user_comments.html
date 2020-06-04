@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+    <!-- Title -->
+    <title>{% block title %} {{ page }} {% endblock %}</title>
+
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'img/core-img/favicon.ico' %}">
+
+    <!-- Stylesheet -->
+    <link type="text/css" rel="stylesheet" href="{% static 'style.css' %}">
+    {% block head %} {% endblock %}
+
+    <style>
+        table.fixed { table-layout: fixed; }
+        table.fixed td { overflow: hidden; }
+        table.fixed a:hover{ color: #ed3974; }
+    </style>
+</head>
+<body>
+    {% include "header.html" %}
+
+      <!-- ##### Breadcrumb Area Start ##### -->
+    <section class="breadcrumb-area bg-img bg-overlay" style="background-image: url({% static 'img/bg-img/40.jpg' %});">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="breadcrumb-content">
+                        <h2>{{ page }}</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### Breadcrumb Area Start ##### -->
+    <div class="mag-breadcrumb py-5">
+        <div class="container">
+            <div class="row">
+
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="alert alert-{{message.tags}} mb-30" role="alert" >
+                            {{ message|safe }}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <div class="col-12">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/home"><i class="fa fa-home" aria-hidden="true"></i> Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">{{ page }}</li>
+                        </ol>
+                    </nav>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcrumb Area End ##### -->
+
+    <!-- ##### About Us Area Start ##### -->
+    <section class="contact-area">
+        <div class="container">
+            <div class="row justify-content-left">
+                {% include "user_panel.html" %}
+                <div class="col-12 col-xl-9">
+                    <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
+                        <div style="margin-top:30px">
+                            <table cellpadding="3" width="100%" style="margin-left:auto;margin-right:auto;" class="fixed">
+                                <col width="40%" />
+                                <col width="20%" />
+                                <col width="20%" />
+                                <col width="20%" />
+                                <tr class="single-blog-post" style="height:100px">
+                                    <th>post</th>
+                                    <th>comment</th>
+                                    <th>date</th>
+                                    <th>Action</th>
+                                </tr>
+                                {% for rs in comments %}
+                                <tr class="single-blog-post" style="height:100px">
+                                    <td><a href="/post/{{ rs.post.id }}/{{ rs.post.slug }}">{{ rs.post.title }}</a></td>
+                                    <td>{{ rs.comment }}</td>
+                                    <td>{{ rs.create_at|date:"M d, Y" }}</td>
+                                    <td><a class="btn mag-btn " href="/user/delete_comment/{{ rs.id }}">Delete</a></td>
+                                </tr>
+                                {% endfor %}
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### About Us Area End ##### -->
+
+
+    {% include "footer.html" %}
+</body>
+</html>

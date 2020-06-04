@@ -26,8 +26,8 @@ class Category(MPTTModel):
         order_insertion_by = ['title']
 
     def __str__(self):
-        if (self.parent):
-                return self.title
+        if self.parent:
+            return self.title
         return self.title
 
     def image_tag(self):
@@ -63,6 +63,9 @@ class News(models.Model):
 
     def get_absolute_url(self):
         return reverse('news_detail', kwargs={'slug': self.slug})
+
+    def likes_count(self):
+        return Like.objects.filter(post_id=self.id).count()
 
 
 class Images(models.Model):

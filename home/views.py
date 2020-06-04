@@ -40,6 +40,7 @@ def about(request):
                }
     return render(request, 'about.html', context)
 
+
 def contact(request):
     if request.method == 'POST':
         form = ContactForm(request.POST)
@@ -64,9 +65,9 @@ def contact(request):
 
 
 def category_news(request, id, slug):
-    news = News.objects.filter(category_id=id)
-    categories = Category.objects.all()
     category = Category.objects.get(id=id)
+    news = find_subs(category)
+    categories = Category.objects.all()
     context = {'news': news,
                'categories': categories,
                'category': category,
@@ -183,3 +184,18 @@ def signup_view(request):
         'categories': categories
     }
     return render(request, 'signup.html', context)
+
+
+def find_subs(category):
+    news = []
+    #for x in News.objects.filter(category_id=category.id):
+    #    news.append(x)
+    if category.get_children():
+        sub_categories = category.get_children()
+        for rs in sub_categories:
+            for n in find_subs(rs):
+                news.append(n)
+        return news
+    else:
+        return News.objects.filter(category_id=category.id)
+

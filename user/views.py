@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import UserProfile
-from news.models import Category
+from news.models import Category, Comment, Like
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -63,3 +63,29 @@ def change_password(request):
             'categories': categories,
         }
         return render(request, 'change_password.html', context)
+
+
+def user_comments(request):
+    comments = Comment.objects.filter(user_id=request.user.id)
+    categories = Category.objects.all()
+    context = {
+        'comments': comments,
+        'categories': categories,
+    }
+    return render(request, 'user_comments.html', context)
+
+
+def delete_comment(request, id):
+    Comment.objects.filter(id=id, user_id=request.user.id).delete()
+    messages.success(request, "Comment Deleted Successfully!")
+    return HttpResponseRedirect('/user/comments')
+
+
+def user_likes(request):
+    likes = Like.objects.filter(user_id=request.user.id)
+    categories = Category.objects.all()
+    context = {
+        'likes': likes,
+        'categories': categories,
+    }
+    return render(request, 'user_likes.html', context)
