@@ -14,7 +14,7 @@ from news.models import News, Category, Images, Comment, Like
 def index(request):
     setting = Setting.objects.get(pk=1)
     sliderdata = News.objects.all()[:3]
-    hot_news = News.objects.all()[:4]
+    special_news = News.objects.filter(special=True)[:4]
     latest_news = News.objects.all().order_by('-id')[:4]
     random_news = News.objects.all().order_by('?')[:4]
     today_news = News.objects.all().order_by('-id') [:4]
@@ -23,7 +23,7 @@ def index(request):
     context = {'setting': setting,
                'sliderdata': sliderdata,
                'latest_news': latest_news,
-               'hot_news': hot_news,
+               'special_news': special_news,
                'random_news': random_news,
                'categories': categories,
                'today_news': today_news,
