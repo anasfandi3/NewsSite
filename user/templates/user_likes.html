@@ -97,11 +97,9 @@
                                 <a href="/post/{{ rs.post.id }}/{{ rs.post.slug }}" class="post-title">{{ rs.post.title }}</a>
                                 <!-- Post Meta -->
                                 <div class="post-meta-2">
-                                    <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                     <a id="like" class="likedColor" href="#" catid="{{rs.post.id}}"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ rs.post.likes_count }}</a>
-                                    <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                                 </div>
-                                <p>{{ rs.post.detail|safe }}</p>
+                                <p>{{ rs.post.content|safe }}</p>
                             </div>
                         </div>
                         {% endfor %}

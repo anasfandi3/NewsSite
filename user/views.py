@@ -39,6 +39,7 @@ def user_update(request):
         context = {
             'categories': categories,
             'user_form': user_form,
+            'page': 'profile update',
             'profile_form': profile_form,
         }
         return render(request, 'user_update.html', context)
@@ -61,6 +62,7 @@ def change_password(request):
         context = {
             'form': form,
             'categories': categories,
+            'page': 'password update',
         }
         return render(request, 'change_password.html', context)
 
@@ -71,6 +73,7 @@ def user_comments(request):
     context = {
         'comments': comments,
         'categories': categories,
+        'page': 'my comments',
     }
     return render(request, 'user_comments.html', context)
 
@@ -87,5 +90,6 @@ def user_likes(request):
     context = {
         'likes': likes,
         'categories': categories,
+        'page': 'my likes',
     }
     return render(request, 'user_likes.html', context)
