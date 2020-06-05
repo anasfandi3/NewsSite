@@ -6,7 +6,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import UserProfile
-from news.models import Category, Comment, Like
+from news.models import Category, Comment, Like, News, NewsForm
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -93,3 +93,71 @@ def user_likes(request):
         'page': 'my likes',
     }
     return render(request, 'user_likes.html', context)
+
+
+def user_posts(request):
+    posts = News.objects.filter(user_id=request.user.id)
+    categories = Category.objects.all()
+    context = {
+        'posts': posts,
+        'categories': categories,
+        'page': 'my posts',
+    }
+    return render(request, 'user_posts.html', context)
+
+
+def user_new_post(request):
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = News()
+            data.user = request.user
+            data.title = form.cleaned_data['title']
+            data.keywords = form.cleaned_data['keywords']
+            data.description = form.cleaned_data['description']
+            data.image = form.cleaned_data['image']
+            data.category = form.cleaned_data['category']
+            data.content = form.cleaned_data['content']
+            data.slug = form.cleaned_data['slug']
+            data.status = 'False'
+            data.save()
+            messages.success(request, 'Post saved successfully!')
+            return HttpResponseRedirect('/user/posts')
+        else:
+            messages.warning(request, 'Content From Error :' + str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        categories = Category.objects.all()
+        form = NewsForm()
+        context = {
+            'categories': categories,
+            'form': form,
+        }
+        return render(request, 'user_new_post.html', context)
+
+
+def user_edit_post(request, id):
+    post = News.objects.get(id=id)
+    if request.method == 'POST':
+        form = NewsForm(request.POST, request.FILES, instance=post)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Post saved successfully!')
+            return HttpResponseRedirect('/user/posts')
+        else:
+            messages.warning(request, 'Content From Error :' + str(form.errors))
+            return HttpResponseRedirect('/')
+    else:
+        categories = Category.objects.all()
+        form = NewsForm(instance=post)
+        context = {
+            'categories': categories,
+            'form': form,
+        }
+        return render(request, 'user_new_post.html', context)
+
+
+def user_delete_post(request, id):
+    News.objects.filter(id=id, user_id=request.user.id).delete()
+    messages.success(request, "deleted successfully!")
+    return HttpResponseRedirect('/user/posts')

@@ -1,6 +1,7 @@
+from ckeditor.widgets import CKEditorWidget
 from django.contrib.auth.models import User
 from django.db import models
-from django.forms import ModelForm
+from django.forms import ModelForm, Select, TextInput, FileInput
 from django.urls import reverse
 from django.utils.safestring import mark_safe
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -112,3 +113,17 @@ class Like(models.Model):
     def __str__(self):
         return None
 
+
+class NewsForm(ModelForm):
+    class Meta:
+        model = News
+        fields = ['category', 'title', 'keywords', 'description', 'image', 'content', 'slug']
+        widgets = {
+            'category': Select(attrs={'class': 'form-control', 'placeholder': 'category'}),
+            'title': TextInput(attrs={'class': 'form-control', 'placeholder': 'title'}),
+            'keywords': TextInput(attrs={'class': 'form-control', 'placeholder': 'keywords'}),
+            'description': TextInput(attrs={'class': 'form-control', 'placeholder': 'description'}),
+            'image': FileInput(attrs={'class': 'form-control', 'placeholder': 'image'}),
+            'content': CKEditorWidget(),
+            'slug': TextInput(attrs={'class': 'form-control', 'placeholder': 'slug'}),
+        }
