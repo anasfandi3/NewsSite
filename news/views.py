@@ -38,8 +38,9 @@ def addcomment(request, post_id):
 
 @login_required(login_url='/login')
 def like(request):
+    post_id = request.POST.get('post_id', '')
     if request.method == 'POST':
-        likes = Like.objects.filter(post_id=request.POST.get('post_id', ''))
+        likes = Like.objects.filter(post_id=post_id)
         users = []
         for like in likes:
             users.append(like.user)
@@ -49,13 +50,13 @@ def like(request):
         else:
             new_like = Like()
             new_like.user = request.user
-            new_like.post = News.objects.get(id=request.POST.get('post_id', ''))
+            new_like.post = News.objects.get(id=post_id)
             new_like.save()
             data = "liked"
     else:
         data = "fail"
-    likes_count = Like.objects.filter(post_id=request.POST.get('post_id', '')).count()
-    ctx = {'data': data, 'likes_count': likes_count}
+    likes_count = Like.objects.filter(post_id=post_id).count()
+    ctx = {'data': data, 'likes_count': likes_count, 'postId': post_id}
     mimetype = 'application/json'
     return JsonResponse(ctx)
 

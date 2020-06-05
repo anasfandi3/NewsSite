@@ -43,6 +43,7 @@ class News(models.Model):
         ('True', 'active'),
         ('False', 'passive'),
     )
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
     category = TreeForeignKey(Category, on_delete=models.CASCADE)
     title = models.CharField(max_length=200)
     keywords = models.CharField(max_length=255)

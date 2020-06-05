@@ -80,8 +80,7 @@
             <div class="row justify-content-left">
                 {% include "user_panel.html" %}
                 <div class="col-12 col-xl-9">
-                    <div class="contact-content-area bg-white mb-30 p-30 box-shadow">
-
+                    <div class="contact-content-area bg-white mb-30 p-30 box-shadow area">
                         {% for rs in likes %}
                         <!-- Single Catagory Post -->
                         <div class="single-catagory-post d-flex flex-wrap">
@@ -96,9 +95,10 @@
                                 </div>
                                 <a href="/post/{{ rs.post.id }}/{{ rs.post.slug }}" class="post-title">{{ rs.post.title }}</a>
                                 <!-- Post Meta -->
-                                <div class="post-meta-2">
-                                    <a id="like" class="likedColor" href="#" catid="{{rs.post.id}}"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ rs.post.likes_count }}</a>
+                                <div id="demo" class="post-meta-2">
+                                    <a id="like" class="likedColor like" href="#" data-post-id="{{rs.post.id}}"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ rs.post.likes_count }}</a>
                                 </div>
+
                                 <p>{{ rs.post.content|safe }}</p>
                             </div>
                         </div>
@@ -112,24 +112,25 @@
     <!-- ##### About Us Area End ##### -->
 
     <script>
-        $('#like').click(function(){
+        $('.like').click(function(){
             $.ajax({
                 type: "post",
                 dataType: "json",
                 url: "{% url 'like_url' %}",
                 data:{
-                     post_id: $('#like').attr('catid'),
+                     post_id: $(this).attr('data-post-id'),
                      'csrfmiddlewaretoken': '{{ csrf_token }}',
                 },
                 success: function(rs){
                     console.log(rs)
-                    $('#like').contents()[2].textContent = rs.likes_count
-
-                    if(rs.data == 'liked'){
-                        $('#like').addClass('likedColor')
-                    }else{
-                        $('#like').removeClass('likedColor')
+                    var x = document.getElementsByClassName("like");
+                    for (var i = 0; i < x.length; i++) {
+                        atr = x[i].getAttribute('data-post-id');
+                        if ( atr == rs.postId){
+                            x[i].innerHTML = "<i class='fa fa-thumbs-o-up' aria-hidden='true'></i>" + rs.likes_count;
+                        }
                     }
+
                 }
             });
 
