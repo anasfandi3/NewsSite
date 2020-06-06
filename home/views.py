@@ -13,12 +13,12 @@ from news.models import News, Category, Images, Comment, Like
 
 def index(request):
     setting = Setting.objects.get(pk=1)
-    sliderdata = News.objects.all()[:3]
-    special_news = News.objects.filter(special=True)[:4]
-    latest_news = News.objects.all().order_by('-id')[:4]
-    random_news = News.objects.all().order_by('?')[:4]
-    today_news = News.objects.all().order_by('-id') [:4]
-    categories = Category.objects.all()
+    sliderdata = News.objects.filter(status='True')[:3]
+    special_news = News.objects.filter(special=True, status='True')[:4]
+    latest_news = News.objects.filter(status='True').order_by('-id')[:4]
+    random_news = News.objects.filter(status='True').order_by('?')[:4]
+    today_news = News.objects.filter(status='True').order_by('-id') [:4]
+    categories = Category.objects.filter(status='True')
 
     context = {'setting': setting,
                'sliderdata': sliderdata,
@@ -33,7 +33,7 @@ def index(request):
 
 def about(request):
     setting = Setting.objects.get(pk=1)
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status='True')
     context = {'setting': setting,
                'page': 'about',
                'categories': categories,
@@ -56,7 +56,7 @@ def contact(request):
 
     setting = Setting.objects.get(pk=1)
     #form = ContactForm()
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status='True')
     context = {'setting': setting,
                'page': 'contact',
                'categories': categories,
@@ -67,7 +67,7 @@ def contact(request):
 def category_news(request, id, slug):
     category = Category.objects.get(id=id)
     news = find_subs(category)
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status='True')
     context = {'news': news,
                'categories': categories,
                'category': category,
@@ -79,7 +79,7 @@ def category_news(request, id, slug):
 def post_detail(request, id, slug):
     categories = Category.objects.all()
     post = News.objects.get(id=id)
-    comments = Comment.objects.filter(post_id=id)
+    comments = Comment.objects.filter(post_id=id, status='True')
     likes = Like.objects.filter(post_id=id)
     likes_count = likes.count()
     users = []
@@ -107,9 +107,9 @@ def news_search(request):
     if request.method == 'POST':
         form = SearchForm(request.POST)
         if form.is_valid():
-            categories = Category.objects.all()
+            categories = Category.objects.filter(status='True')
             query = form.cleaned_data['query']
-            news = News.objects.filter(title__icontains=query)
+            news = News.objects.filter(title__icontains=query, status='True')
             # return HttpResponse(products)
             context = {'news': news,
                        'categories': categories,
@@ -123,7 +123,7 @@ def news_search(request):
 def news_search_auto(request):
     if request.is_ajax():
         q = request.GET.get('term', '')
-        news = News.objects.filter(title__icontains=q)
+        news = News.objects.filter(title__icontains=q, status='True')
         results = []
         for rs in news:
             news_json = {}
@@ -153,7 +153,7 @@ def login_view(request):
             messages.warning(request, "login error!")
             return HttpResponseRedirect('/login')
 
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status='True')
     context = {
         'categories': categories,
     }
@@ -188,7 +188,7 @@ def signup_view(request):
 
 def find_subs(category):
     news = []
-    #for x in News.objects.filter(category_id=category.id):
+    #for x in News.objects.filter(category_id=category.id, status='True'):
     #    news.append(x)
     if category.get_children():
         sub_categories = category.get_children()
@@ -197,5 +197,5 @@ def find_subs(category):
                 news.append(n)
         return news
     else:
-        return News.objects.filter(category_id=category.id)
+        return News.objects.filter(category_id=category.id, status='True')
 

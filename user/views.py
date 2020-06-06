@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import PasswordChangeForm
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
@@ -10,9 +11,10 @@ from news.models import Category, Comment, Like, News, NewsForm
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
+@login_required(login_url='/login')
 def index(request):
 
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status='True')
     profile = UserProfile.objects.get(user=request.user)
     context = {
         'categories': categories,
@@ -23,6 +25,7 @@ def index(request):
     return render(request, 'user_profile.html', context)
 
 
+@login_required(login_url='/login')
 def user_update(request):
     if request.method == 'POST':
         user_form = UserUpdateForm(request.POST, instance=request.user)
@@ -33,7 +36,7 @@ def user_update(request):
             messages.success(request, 'Your profile has been updated!')
             return HttpResponseRedirect('/user')
     else:
-        categories = Category.objects.all()
+        categories = Category.objects.filter(status='True')
         user_form = UserUpdateForm(instance=request.user)
         profile_form = ProfileUpdateForm(instance=request.user.userprofile)
         context = {
@@ -45,6 +48,7 @@ def user_update(request):
         return render(request, 'user_update.html', context)
 
 
+@login_required(login_url='/login')
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
@@ -57,7 +61,7 @@ def change_password(request):
             messages.error(request, 'Please correct thr errors below:<br>' + str(form.errors))
             return HttpResponseRedirect('/user/password')
     else:
-        categories = Category.objects.all()
+        categories = Category.objects.filter(status='True')
         form = PasswordChangeForm(request.user)
         context = {
             'form': form,
@@ -67,9 +71,10 @@ def change_password(request):
         return render(request, 'change_password.html', context)
 
 
+@login_required(login_url='/login')
 def user_comments(request):
-    comments = Comment.objects.filter(user_id=request.user.id)
-    categories = Category.objects.all()
+    comments = Comment.objects.filter(user_id=request.user.id, status='True')
+    categories = Category.objects.filter(status='True')
     context = {
         'comments': comments,
         'categories': categories,
@@ -78,12 +83,14 @@ def user_comments(request):
     return render(request, 'user_comments.html', context)
 
 
+@login_required(login_url='/login')
 def delete_comment(request, id):
     Comment.objects.filter(id=id, user_id=request.user.id).delete()
     messages.success(request, "Comment Deleted Successfully!")
     return HttpResponseRedirect('/user/comments')
 
 
+@login_required(login_url='/login')
 def user_likes(request):
     likes = Like.objects.filter(user_id=request.user.id)
     categories = Category.objects.all()
@@ -95,8 +102,9 @@ def user_likes(request):
     return render(request, 'user_likes.html', context)
 
 
+@login_required(login_url='/login')
 def user_posts(request):
-    posts = News.objects.filter(user_id=request.user.id)
+    posts = News.objects.filter(user_id=request.user.id, status='True')
     categories = Category.objects.all()
     context = {
         'posts': posts,
@@ -106,6 +114,7 @@ def user_posts(request):
     return render(request, 'user_posts.html', context)
 
 
+@login_required(login_url='/login')
 def user_new_post(request):
     if request.method == 'POST':
         form = NewsForm(request.POST, request.FILES)
@@ -136,6 +145,7 @@ def user_new_post(request):
         return render(request, 'user_new_post.html', context)
 
 
+@login_required(login_url='/login')
 def user_edit_post(request, id):
     post = News.objects.get(id=id)
     if request.method == 'POST':
@@ -148,7 +158,7 @@ def user_edit_post(request, id):
             messages.warning(request, 'Content From Error :' + str(form.errors))
             return HttpResponseRedirect('/')
     else:
-        categories = Category.objects.all()
+        categories = Category.objects.filter(status='True')
         form = NewsForm(instance=post)
         context = {
             'categories': categories,
@@ -157,6 +167,7 @@ def user_edit_post(request, id):
         return render(request, 'user_new_post.html', context)
 
 
+@login_required(login_url='/login')
 def user_delete_post(request, id):
     News.objects.filter(id=id, user_id=request.user.id).delete()
     messages.success(request, "deleted successfully!")
