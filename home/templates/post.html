@@ -95,27 +95,19 @@
                             <h4 class="post-title">{{ post.title }}</h4>
                             <!-- Post Meta -->
                             <div class="post-meta-2">
-                                <a href="#"><i class="fa fa-eye" aria-hidden="true"></i> 1034</a>
                                 <a id="like" class="{% if liked %} likedColor {% endif %}" href="#"> <i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{ likes_count }}</a>
-                                <a href="#"><i class="fa fa-comments-o" aria-hidden="true"></i> 234</a>
                             </div>
 
                             {{post.content | safe}}
-                            <!-- Like Dislike Share -->
-                            <div class="like-dislike-share my-5">
-                                <h4 class="share">240<span>Share</span></h4>
-                                <a href="#" class="facebook"><i class="fa fa-facebook" aria-hidden="true"></i> Share on Facebook</a>
-                                <a href="#" class="twitter"><i class="fa fa-twitter" aria-hidden="true"></i> Share on Twitter</a>
-                            </div>
+
 
                             <!-- Post Author -->
                             <div class="post-author d-flex align-items-center">
                                 <div class="post-author-thumb">
-                                    <img src="" alt="">
+                                    <img src="{{post.user.userprofile.image.url}}" alt="">
                                 </div>
                                 <div class="post-author-desc pl-4">
-                                    <a href="#" class="author-name">Alan Shaerer</a>
-                                    <p>Duis tincidunt turpis sodales, tincidunt nisi et, auctor nisi. Curabitur vulputate sapien eu metus ultricies fermentum nec vel augue. Maecenas eget lacinia est.</p>
+                                    <span>Alan Shaerer</span>
                                 </div>
                             </div>
                         </div>
@@ -135,64 +127,20 @@
                                 <div class="comment-content d-flex">
                                     <!-- Comment Author -->
                                     <div class="comment-author">
-                                        <img src="" alt="author">
+                                        <img src="{{comment.user.userprofile.image.url}}" alt="author">
                                     </div>
                                     <!-- Comment Meta -->
                                     <div class="comment-meta">
                                         <a href="#" class="comment-date">{{ post.create_at|date:"M d, Y" }}</a>
                                         <h6>{{ comment.user }}</h6>
                                         <p>{{ comment.comment }}</p>
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" class="like">like</a>
-                                            <a href="#" class="reply">Reply</a>
-                                        </div>
+
                                     </div>
                                 </div>
                             </li>
                             {% endfor %}
+                        </ol>
 
-                            <!-- Single Comment Area -->
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="comment-date">27 Aug 2019</a>
-                                        <h6>Simon Downey</h6>
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" class="like">like</a>
-                                            <a href="#" class="reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
-                        <ol class="children">
-                            <li class="single_comment_area">
-                                <!-- Comment Content -->
-                                <div class="comment-content d-flex">
-                                    <!-- Comment Author -->
-                                    <div class="comment-author">
-                                        <img src="" alt="author">
-                                    </div>
-                                    <!-- Comment Meta -->
-                                    <div class="comment-meta">
-                                        <a href="#" class="comment-date">27 Aug 2019</a>
-                                        <h6>Britney Millner</h6>
-                                        <p>Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius</p>
-                                        <div class="d-flex align-items-center">
-                                            <a href="#" class="like">like</a>
-                                            <a href="#" class="reply">Reply</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </li>
-                        </ol>
                     </div>
 
                     <!-- Post A Comment Area -->
