@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.models import UserProfile
-from news.models import Category, Comment, Like, News, NewsForm
+from news.models import Category, Comment, Like, News, NewsForm, ImageForm, Images
 from user.forms import UserUpdateForm, ProfileUpdateForm
 
 
@@ -172,3 +172,34 @@ def user_delete_post(request, id):
     News.objects.filter(id=id, user_id=request.user.id).delete()
     messages.success(request, "deleted successfully!")
     return HttpResponseRedirect('/user/posts')
+
+
+def user_image_gallery(request, id):
+    if request.method == 'POST':
+        last_url = request.META.get('HTTP_REFERER')
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = Images()
+            data.title = form.cleaned_data['title']
+            data.news_id = id
+            data.image = form.cleaned_data['image']
+            data.save()
+            messages.success(request, 'Image has been saved successfully!')
+            return HttpResponseRedirect(last_url)
+        else:
+            messages.warning(request, 'Form Error:' + str(form.errors))
+            return HttpResponseRedirect(last_url)
+    else:
+        post = News.objects.get(id=id)
+        images = []
+        try:
+            images = Images.objects.filter(news_id=id)
+        except:
+            pass
+        form = ImageForm()
+        context = {
+            'post': post,
+            'images': images,
+            'form': form
+        }
+        return render(request, 'image_gallery.html', context)

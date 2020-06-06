@@ -80,20 +80,23 @@
                                 <a class="btn mag-btn mb-1" href="/user/new_post/">New post</a>
                             </div>
                             <table cellpadding="3" width="100%" style="margin-left:auto;margin-right:auto;border-top:1px solid #ebebeb" class="fixed">
-                                <col width="20%" />
-                                <col width="40%" />
-                                <col width="20%" />
-                                <col width="20%" />
+                                <col width="17%" />
+                                <col width="30%" />
+                                <col width="12%" />
+                                <col width="17%" />
+                                <col width="17%" />
                                 <tr class="single-blog-post" style="height:100px">
                                     <th>image</th>
                                     <th>post</th>
+                                    <th>Gallery</th>
                                     <th>date</th>
                                     <th>Action</th>
                                 </tr>
                                 {% for rs in posts %}
                                 <tr class="single-blog-post" style="height:100px">
                                     <td><img src="{{ rs.image.url }}" style="padding-right:25px;padding-bottom:25px;padding-top:25px;" ></td>
-                                    <td>{{ rs.title }}</td>
+                                    <td><a href="/post/{{ rs.id }}/{{ rs.slug }}">{{ rs.title }}</a></td>
+                                    <td><a href="javascript:;" onclick="window.open('/user/imagegallery/{{ rs.id }}', 'gallery', 'height=600,width=800,top=50, left=150')">Gallery</a></td>
                                     <td>{{ rs.create_at|date:"M d, Y" }}</td>
                                     <td>
                                         <a class="btn mag-btn mb-1" href="/user/edit_post/{{ rs.id }}">Edit</a>

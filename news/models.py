@@ -80,6 +80,12 @@ class Images(models.Model):
         return self.title
 
 
+class ImageForm(ModelForm):
+    class Meta:
+        model = Images
+        fields = ['title', 'image']
+
+
 class Comment(models.Model):
     STATUS = (
         ('New', 'New'),
