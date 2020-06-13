@@ -92,3 +92,16 @@ class UserProfileForm(ModelForm):
         model = UserProfile
         fields = ['phone', 'address', 'country', 'city', 'image', ]
 
+
+class FAQ(models.Model):
+    STATUS = (
+        ('True', 'active'),
+        ('False', 'passive'),
+    )
+    question = models.CharField(max_length=250)
+    answer = models.TextField()
+    ordernumber = models.IntegerField()
+    status = models.CharField(max_length=10, choices=STATUS,)
+    create_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+

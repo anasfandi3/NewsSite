@@ -7,7 +7,7 @@ from django.shortcuts import render
 
 # Create your views here.
 from home.forms import SearchForm, SignUpForm
-from home.models import Setting, ContactFormMessage, ContactForm, UserProfile
+from home.models import Setting, ContactFormMessage, ContactForm, UserProfile, FAQ
 from news.models import News, Category, Images, Comment, Like
 
 
@@ -199,3 +199,13 @@ def find_subs(category):
     else:
         return News.objects.filter(category_id=category.id, status='True')
 
+
+def faq(request):
+    categories = Category.objects.all()
+    faqs = FAQ.objects.all().order_by('ordernumber')
+    context = {
+        'categories': categories,
+        'faqs': faqs,
+        'page': 'faq',
+    }
+    return render(request, 'faq.html', context)

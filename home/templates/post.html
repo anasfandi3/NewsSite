@@ -104,10 +104,11 @@
                             <!-- Post Author -->
                             <div class="post-author d-flex align-items-center">
                                 <div class="post-author-thumb">
-                                    <img src="{{post.user.userprofile.image.url}}" alt="">
+                                    <img src="{{post.user.userprofile.image.url}}" alt="" style="height:100px">
                                 </div>
                                 <div class="post-author-desc pl-4">
-                                    <span>Alan Shaerer</span>
+                                    <span style="font-size: 20px;">{{post.user.username}}</span><br>
+                                    <span style="font-size: 15px;color:#6c757d;">{{post.user.first_name}} {{post.user.last_name}}</span>
                                 </div>
                             </div>
                         </div>
